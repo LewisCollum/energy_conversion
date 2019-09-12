@@ -1,0 +1,22 @@
+** In-Class Examples
+#+BEGIN_SRC python :results output
+import numpy
+
+voltage = {'S': 120 + 0j, 'L': 110*numpy.exp(1j*numpy.radians(-5))}
+impedance = {'S': 0.2 + 0.5j, 'L': 0.3+0.1j}
+current = {'S': (voltage['S']-voltage['L'])/(impedance['S']+impedance['L'])}
+
+print(f"{current['S']:.2} Amps")
+
+#Vx = Is*Zl + Vl
+voltage['X'] = current['S']*impedance['L'] + voltage['L']
+print(f"{voltage['X']:.3} Volts")
+
+power = {'L': impedance['L']*current['S'].conjugate()}
+print(f"{power['L']}")
+#+END_SRC
+
+#+RESULTS:
+: (18-2.4j) Amps
+: (115-8.51j) Volts
+: (5.151988164602412+2.5138234181590535j)
