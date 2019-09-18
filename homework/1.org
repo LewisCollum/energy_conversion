@@ -1,11 +1,12 @@
 #+latex_header: \usepackage{homework_template}
+#+latex_header: \usepackage{mathcomp}
 #+title: EE331 Fall 2019 HW \jobname
 #+author: Lewis Collum
 #+date: Updated: \today
 
 * 1
 ** Q1: Find the phasor current $I_S$
-#+BEGIN_SRC python :results output raw :session s1 :exports both
+#+BEGIN_SRC python :results output raw :session s1
 v = {'S': 120}
 
 z = {
@@ -23,6 +24,9 @@ i = {'S': v['S']/z['equivalent']}
 print("\(\\boxed{I_S =", f"{i['S']:.3}", "\si{A}}\)")
 #+END_SRC
 
+#+RESULTS:
+\(\boxed{I_S = (11.9-14.2j) \si{A}}\)
+
 ** Q2: Find the phasor voltage $V_X$
 #+BEGIN_EXPORT latex
 \begin{align*}
@@ -31,10 +35,13 @@ print("\(\\boxed{I_S =", f"{i['S']:.3}", "\si{A}}\)")
 \end{align*}
 #+END_EXPORT
 
-#+BEGIN_SRC python :results output raw :session s1 :exports both
+#+BEGIN_SRC python :results output raw :session s1
 v['X'] = v['S'] - i['S']*z['S']
 print("\(\\boxed{V_X =", f"{v['X']:.3}", "\si{V}}\)")
 #+END_SRC
+
+#+RESULTS:
+\(\boxed{V_X = (111-3.12j) \si{V}}\)
 
 ** Q3: Find active power, reactive power, and apparent power flows at point X
 #+BEGIN_SRC python :session s1 :exports both :results output
@@ -43,14 +50,14 @@ p['apparent'] = abs(p['X'])
 p['active'] = p['X'].real
 p['reactive'] = p['X'].imag
 print(f"Active Power @ X = {p['active']:.5} W")
-print(f"Reactive Power @ X = {p['reactive']:.5} W")
-print(f"Apparent Power @ X = {p['apparent']:.5} W")
+print(f"Reactive Power @ X = {p['reactive']:.5} VAR")
+print(f"Apparent Power @ X = {p['apparent']:.5} VA")
 #+END_SRC
 
 #+RESULTS:
 : Active Power @ X = 1272.7 W
-: Reactive Power @ X = -1604.0 W
-: Apparent Power @ X = 2047.5 W
+: Reactive Power @ X = -1604.0 VAR
+: Apparent Power @ X = 2047.5 VA
 
 * 2
 #+BEGIN_SRC python :session s2 :results output
@@ -62,17 +69,61 @@ w = 60.0 * 2*numpy.pi * unit.rad/unit.s
 v = {'S': 120 * unit.volts, 'L': 110*numpy.exp(1j * numpy.radians(5)) * unit.volts}
 l = {'S': 0.1 * unit.mH, 'L': 0.2 * unit.mH}
 r = {'S': 0.3 * unit.ohm, 'L': 0.5 * unit.ohm}
-#+END_SRC
-
-** Q1: Find the phasor current $I_S$
-#+BEGIN_SRC python :session s2 :results output
-print(w)
+z = {'S': r['S'] + w*l['S']*1j, 'L': r['L'] + w*l['L']*1j}
 #+END_SRC
 
 #+RESULTS:
-: 376.99111843077515 radian / second
 
+** Q1: Find the phasor current $I_S$
+#+BEGIN_EXPORT latex
+\begin{equation*}
+  I_S = \frac{V_S - V_L}{Z_{equivalent}}
+\end{equation*}
+#+END_EXPORT
+#+BEGIN_SRC python :session s2 :results output raw
+z['equivalent'] = z['S'] + z['L']
+i = {'S': (v['S']-v['L'])/z['equivalent']}
+print("\(\\boxed{I_S =", f"{i['S'].magnitude:.3}", "\si{A}}\)")
+#+END_SRC
 
-* 3
+#+RESULTS:
+\(\boxed{I_S = (11.1-13.6j) \si{A}}\)
 
-* 4
+** Q2: Find active power, reactive power, and apparent power flows at load $V_L$
+#+BEGIN_EXPORT latex
+\begin{equation*}
+  P_L = I_SV_L
+\end{equation*}
+#+END_EXPORT
+#+BEGIN_SRC python :session s2 :results output :exports both
+p = {'L': i['S']*v['L']}
+p['active'] = p['L'].real
+p['reactive'] = p['L'].imag
+p['apparent'] = abs(p['L'])
+print(f"Active Power @ X = {p['active'].magnitude:.5} W")
+print(f"Reactive Power @ X = {p['reactive'].magnitude:.5} VAR")
+print(f"Apparent Power @ X = {p['apparent'].magnitude:.5} VA")
+#+END_SRC
+
+#+RESULTS:
+: Active Power @ X = 1347.1 W
+: Reactive Power @ X = -1378.8 VAR
+: Apparent Power @ X = 1927.6 VA
+
+** Q3: Monthly cost for operating load. Assume that one month has 30 days.
+#+BEGIN_EXPORT latex
+\begin{equation*}
+  C_m = \frac{20 \ \si{cents}}{\si{kWh}} \cdot \frac{30\cdot 24 \ \si{h}}{\si{month}} \cdot P_{L\_active}\times 10^{-3} \si{kWh}
+\end{equation*}
+#+END_EXPORT
+#+BEGIN_SRC python :session s2 :results output :exports both
+centsPerkWh = 20
+daysPerMonth = 30
+hoursPerDay = 24
+hoursPerMonth = daysPerMonth * hoursPerDay
+monthlyDollars = centsPerkWh * hoursPerMonth * p['active'].magnitude /10**3 / 100
+print(f"Cost (dollars): {monthlyDollars:.5}")
+#+END_SRC
+
+#+RESULTS:
+: Cost (dollars): 193.9784
