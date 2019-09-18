@@ -1,0 +1,78 @@
+#+latex_header: \usepackage{homework_template}
+#+title: EE331 Fall 2019 HW \jobname
+#+author: Lewis Collum
+#+date: Updated: \today
+
+* 1
+** Q1: Find the phasor current $I_S$
+#+BEGIN_SRC python :results output raw :session s1 :exports both
+v = {'S': 120}
+
+z = {
+    'M': 10 + 4j,
+    'S': 0.2 + 0.5j,
+    'L': 0.3 + 0.1j,
+    'X': 3 + 10j
+}
+
+z['LM'] = z['L']+z['M']
+z['LMX'] = (z['LM']**-1 + z['X']**-1)**-1
+z['equivalent'] = z['LMX'] + z['S']
+
+i = {'S': v['S']/z['equivalent']}
+print("\(\\boxed{I_S =", f"{i['S']:.3}", "\si{A}}\)")
+#+END_SRC
+
+** Q2: Find the phasor voltage $V_X$
+#+BEGIN_EXPORT latex
+\begin{align*}
+  \frac{V_S-V_X}{Z_S} &= I_S \\
+  \implies V_X &= V_S - Z_SI_S 
+\end{align*}
+#+END_EXPORT
+
+#+BEGIN_SRC python :results output raw :session s1 :exports both
+v['X'] = v['S'] - i['S']*z['S']
+print("\(\\boxed{V_X =", f"{v['X']:.3}", "\si{V}}\)")
+#+END_SRC
+
+** Q3: Find active power, reactive power, and apparent power flows at point X
+#+BEGIN_SRC python :session s1 :exports both :results output
+p = {'X': v['X']*i['S']}
+p['apparent'] = abs(p['X'])
+p['active'] = p['X'].real
+p['reactive'] = p['X'].imag
+print(f"Active Power @ X = {p['active']:.5} W")
+print(f"Reactive Power @ X = {p['reactive']:.5} W")
+print(f"Apparent Power @ X = {p['apparent']:.5} W")
+#+END_SRC
+
+#+RESULTS:
+: Active Power @ X = 1272.7 W
+: Reactive Power @ X = -1604.0 W
+: Apparent Power @ X = 2047.5 W
+
+* 2
+#+BEGIN_SRC python :session s2 :results output
+import numpy
+import pint
+unit = pint.UnitRegistry()
+
+w = 60.0 * 2*numpy.pi * unit.rad/unit.s
+v = {'S': 120 * unit.volts, 'L': 110*numpy.exp(1j * numpy.radians(5)) * unit.volts}
+l = {'S': 0.1 * unit.mH, 'L': 0.2 * unit.mH}
+r = {'S': 0.3 * unit.ohm, 'L': 0.5 * unit.ohm}
+#+END_SRC
+
+** Q1: Find the phasor current $I_S$
+#+BEGIN_SRC python :session s2 :results output
+print(w)
+#+END_SRC
+
+#+RESULTS:
+: 376.99111843077515 radian / second
+
+
+* 3
+
+* 4
