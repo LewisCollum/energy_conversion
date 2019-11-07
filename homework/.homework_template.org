@@ -1,0 +1,8 @@
+#+latex_class_options: [fleqn]
+#+latex_header: \usepackage{../homework}
+
+#+title: EE331 Fall 2019 HW \jobname
+#+author: Lewis Collum
+#+date: Updated: \today
+
+* <Question Number>

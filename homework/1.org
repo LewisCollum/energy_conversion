@@ -1,4 +1,4 @@
-#+latex_header: \usepackage{homework_template}
+#+latex_header: \usepackage{homework}
 #+latex_header: \usepackage{mathcomp}
 #+title: EE331 Fall 2019 HW \jobname
 #+author: Lewis Collum
