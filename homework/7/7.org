@@ -1,4 +1,4 @@
-#+latex_class_options: [fleqn]
+#+latex_class_options: [fleqn, twocolumn]
 #+latex_header: \usepackage{../homework}
 
 #+title: EE331 Fall 2019 HW \jobname
@@ -6,8 +6,7 @@
 #+date: Updated: \today
 
 * 1.
-** a)
-   
+** a)   
    #+BEGIN_EXPORT latex
    \begin{align*}
      V_{f} &= K_{C} (V_{t}^* - V_{t}) + V_{f0} \\
@@ -25,7 +24,6 @@
    #+END_EXPORT
 
 ** b)
-
    #+BEGIN_EXPORT latex
    \begin{align*}
      V_{f} &= K_{C} (V_{t}^* - V_{t}) + V_{f0} \\
@@ -79,13 +77,17 @@
    #+END_EXPORT
 
    #+BEGIN_EXPORT latex
-   \[P_{G1} = S_{R1}(f_{G1}^* - f_{system}) =
-   555.6\si{MW \ Hz^{-1}} (60.1\si{Hz} - 59.8\si{Hz}) =
-   \boxed{166.7\si{MW}}\]
+   \begin{align*}
+     P_{G1} &= S_{R1}(f_{G1}^* - f_{system}) \\
+     &= 555.6\si{MW \ Hz^{-1}} (60.1\si{Hz} - 59.8\si{Hz}) \\
+     &= \boxed{166.7\si{MW}}
+   \end{align*}
 
-   \[P_{G2} = S_{R2}(f_{G2}^* - f_{system}) =
-   138.9\si{MW \ Hz^{-1}} (60.5\si{Hz} - 59.8\si{Hz}) =
-   \boxed{97.2\si{MW}}\]
+   \begin{align*}
+     P_{G2} &= S_{R2}(f_{G2}^* - f_{system}) \\
+     &= 138.9\si{MW \ Hz^{-1}} (60.5\si{Hz} - 59.8\si{Hz}) \\
+     &= \boxed{97.2\si{MW}}
+   \end{align*}
 
    \[P_{LT} = 97.2 + 166.7 = \boxed{263.9\si{MW}}\]
    #+END_EXPORT
@@ -108,17 +110,16 @@
 
 * 4
 ** a)
+   This equation is used to calculate the \(f_{sys}\) below:
    #+BEGIN_EXPORT latex
    \[P_{demand} = S_{R1}(f_{G1}^* - f_{sys})
    + S_{R2}(f_{G2}^* - f_{sys})
    + S_{R3}(f_{G3}^* - f_{sys})\]
 
-   We need the droop constants to evaluate the equation above.
    \[S_{R1} = \frac{300}{60\cdot 0.05} = 100.0 \si{MA \ Hz^{-1}}\]
    \[S_{R1} = \frac{200}{60\cdot 0.05} = 66.67 \si{MA \ Hz^{-1}}\]
    \[S_{R1} = \frac{250}{60\cdot 0.05} = 83.33 \si{MA \ Hz^{-1}}\]
 
-   So,
    \[\boxed{f_{sys} = 58.5\si{Hz}}\]
    #+END_EXPORT
 
