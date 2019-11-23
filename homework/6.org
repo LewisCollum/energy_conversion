@@ -1,0 +1,87 @@
+#+options: num:t
+
+#+latex_class_options: [fleqn]
+#+latex_header: \usepackage{homework}
+
+#+title: EE331 Fall 2019 HW \jobname
+#+author: Lewis Collum, Tyler Borrelli, Thomas Wrede
+#+date: Updated: \today
+
+* Question 2: Sketches
+  Are all three phases balanced (separated by 120)? No, see table.
+  
+  Plots (sketches) are below:
+
+  #+caption: 5V
+  #+attr_latex: :width 0.5\linewidth :placement [H]
+  [[./osc5.jpg]]
+
+  #+caption: 10V
+  #+attr_latex: :width 0.5\linewidth :placement [H]
+  [[./osc10.jpg]]
+
+  #+caption: 15V
+  #+attr_latex: :width 0.5\linewidth :placement [H]
+  [[./osc15.jpg]]
+
+  #+caption: 19V
+  #+attr_latex: :width 0.5\linewidth :placement [H]
+  [[./osc19.jpg]]
+
+* Question 3: Table
+  #+tblname: table
+  | Voltage (V) | Current (A) | AC RMS \(F_{S1}\)(V) | AC RMS \(F_{S2}\)(V) | Frequency (Hz) | Phase (deg) |
+  |-------------+-------------+----------------------+----------------------+----------------+-------------|
+  |       5.004 |        .963 |                 3.22 |               3.1640 |           29.3 |         -60 |
+  |          10 |       1.117 |                 6.62 |                 6.99 |           65.4 |         -59 |
+  |       15.01 |       1.191 |               10.763 |                10.98 |          101.9 |         -56 |
+  |       19.01 |       1.242 |                13.53 |                 13.2 |         131.56 |         -42 |
+
+* Question 5: RPM
+  #+BEGIN_EXPORT latex
+  \[n = \frac{f\cdot 60}{p_{p}/2}\]
+  #+END_EXPORT
+
+#+BEGIN_SRC python :exports results :results output :var table=table 
+import numpy
+table = numpy.asarray(table)
+voltages = table[:, 0]
+frequency = table[:, 4]
+poles = 8
+speeds = frequency*60/(poles/2)
+
+for voltage, speed in zip(voltages, speeds):
+    print(f"{voltage} [V]: {round(speed, 4)} [RPM]")
+#+END_SRC
+
+#+RESULTS:
+: 5.004 [V]: 439.5 [RPM]
+: 10.0 [V]: 981.0 [RPM]
+: 15.01 [V]: 1528.5 [RPM]
+: 19.01 [V]: 1973.4 [RPM]
+
+* Question 6: Shaft Speed vs DC Motor 
+  #+attr_latex: :width 0.5\linewidth
+  [[./shaftSpeedVsDcMotor.png]]
+
+* Question 7: AC Motor vs Shaft Speed
+  #+BEGIN_EXPORT latex
+  \[|V_{AC}| = \sqrt{2} \cdot V_{RMS}\]
+  #+END_EXPORT
+  #+attr_latex: :width 0.5\linewidth
+  [[./acMotorVoltageVsShaftSpeed.png]]
+
+* Question 8: DC Input vs Shaft Speed
+  #+BEGIN_EXPORT latex
+  \[P_{total} = i_{motor} \cdot v_{motor}\]
+  #+END_EXPORT
+  #+attr_latex: :width 0.5\linewidth
+  [[./dcInputPowerVsShaftSpeed.png]]
+
+* Question 9: AC Power vs Shaft Speed
+  #+BEGIN_EXPORT latex
+  \[P_{dc} = 0.75 \cdot V_{motor}\]
+  \[P_{AC} = P_{total} - P_{DC}\]
+  #+END_EXPORT
+  #+attr_latex: :width 0.5\linewidth
+  [[./acPowerVsShaftSpeed.png]]
