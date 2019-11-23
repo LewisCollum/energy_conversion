@@ -1,0 +1,131 @@
+#+latex_class_options: [fleqn, twocolumn]
+#+latex_header: \usepackage{../homework}
+
+#+title: EE331 Fall 2019 HW \jobname
+#+author: Lewis Collum
+#+date: Updated: \today
+
+* 1.
+** a)   
+   #+BEGIN_EXPORT latex
+   \begin{align*}
+     V_{f} &= K_{C} (V_{t}^* - V_{t}) + V_{f0} \\
+     &= 2.5 (280\si{V} - 275\si{V}) + 150\si{V} \\
+     &= \boxed{162.5\si{V}}
+   \end{align*}
+   #+END_EXPORT
+
+   #+BEGIN_EXPORT latex
+   \[I_{f} = \frac{V_f}{R_f} = \frac{162.5\si{V}}{2\si{\Omega}} = \boxed{81.25\si{A}}\]
+   #+END_EXPORT
+
+   #+BEGIN_EXPORT latex
+   \[E_f = \omega_e K_e I_f = 2\pi\cdot 60\si{Hz} \cdot 0.025 \cdot 81.25\si{A} = \boxed{765.8\si{V}}\]
+   #+END_EXPORT
+
+** b)
+   #+BEGIN_EXPORT latex
+   \begin{align*}
+     V_{f} &= K_{C} (V_{t}^* - V_{t}) + V_{f0} \\
+     &= 2.5 (265\si{V} - 275\si{V}) + 150\si{V} \\
+     &= \boxed{125\si{V}}
+   \end{align*}
+   #+END_EXPORT
+
+   #+BEGIN_EXPORT latex
+   \[I_{f} = \frac{V_f}{R_f} = \frac{162.5\si{V}}{2\si{\Omega}} = \boxed{62.5\si{A}}\]
+   #+END_EXPORT
+
+   #+BEGIN_EXPORT latex
+   \[E_f = \omega_e K_e I_f = 2\pi\cdot 60\si{Hz} \cdot 0.025 \cdot 62.5\si{A} = \boxed{589\si{V}}\]
+   #+END_EXPORT
+   
+* 2
+** a)
+   #+BEGIN_EXPORT latex
+   \[S_R = \frac{1\si{MW}}{60\si{Hz} \cdot 0.05} = \boxed{0.33\si{MW \ Hz^{-1}}}\]
+   #+END_EXPORT
+   
+** b)
+   #+BEGIN_EXPORT latex
+   \[P_g = S_R (f_g^* - f_{system}) \to\]
+   \begin{align*}
+     f_{system} &= f_g^* - \frac{P_g}{S_R} \\
+     &= 60.5\si{Hz} - \frac{0.5\si{MW}}{0.33\si{MW \ HZ^{-1}}} \\
+     &= \boxed{59.0\si{Hz}}
+   \end{align*}
+   #+END_EXPORT
+
+** c)
+   #+BEGIN_EXPORT latex
+   \begin{align*}
+     f_{system} &= f_g^* - \frac{P_g}{S_R} \\
+     &= 60.5\si{Hz} - \frac{0.2\si{MW}}{0.33\si{MW \ HZ^{-1}}} \\
+     &= \boxed{59.9\si{Hz}}
+   \end{align*}
+   #+END_EXPORT
+
+   #+BEGIN_EXPORT latex
+   \[\texttt{rpm} = f_{system} \cdot \frac{60}{\texttt{poles}/2} = \boxed{898.5\si{rpm}}\]
+   #+END_EXPORT
+
+* 3
+** a)
+   #+BEGIN_EXPORT latex
+   \[S_{R1} = \frac{1000\si{MW}}{60\si{Hz}\cdot 0.03} = 555.6 \si{MW \ Hz^{-1}}\]
+   \[S_{R2} = \frac{500\si{MW}}{60\si{Hz}\cdot 0.06} = 138.9 \si{MW \ Hz^{-1}}\]
+   #+END_EXPORT
+
+   #+BEGIN_EXPORT latex
+   \begin{align*}
+     P_{G1} &= S_{R1}(f_{G1}^* - f_{system}) \\
+     &= 555.6\si{MW \ Hz^{-1}} (60.1\si{Hz} - 59.8\si{Hz}) \\
+     &= \boxed{166.7\si{MW}}
+   \end{align*}
+
+   \begin{align*}
+     P_{G2} &= S_{R2}(f_{G2}^* - f_{system}) \\
+     &= 138.9\si{MW \ Hz^{-1}} (60.5\si{Hz} - 59.8\si{Hz}) \\
+     &= \boxed{97.2\si{MW}}
+   \end{align*}
+
+   \[P_{LT} = 97.2 + 166.7 = \boxed{263.9\si{MW}}\]
+   #+END_EXPORT
+
+** b)
+   #+BEGIN_EXPORT latex
+   \begin{align*}
+     P_{demand} &= 263.9+200 = 463.9\si{MW} \\
+     &= S_{R1}(f_{G1}^* - f_{sys2}) + S_{R2}(f_{G2}^* - f_{sys2}) \\
+     &= 555.6(60.1 - f_{sys2}) + 138.9(60.5 - f_{sys2})
+   \end{align*}
+
+   \[\to f_{sys2} = \boxed{59.512\si{Hz}}\]
+   \[P_{G1} = S_{R1}(f_{G1}^* - f_{sys2}) = \boxed{326.7\si{MA}}\]
+   \[P_{G1} = S_{R2}(f_{G2}^* - f_{sys2}) = \boxed{137.2\si{MA}}\]
+   #+END_EXPORT
+
+   Neither generator is overloaded since the output is below the rated
+   power for both.
+
+* 4
+** a)
+   This equation is used to calculate the \(f_{sys}\) below:
+   #+BEGIN_EXPORT latex
+   \[P_{demand} = S_{R1}(f_{G1}^* - f_{sys})
+   + S_{R2}(f_{G2}^* - f_{sys})
+   + S_{R3}(f_{G3}^* - f_{sys})\]
+
+   \[S_{R1} = \frac{300}{60\cdot 0.05} = 100.0 \si{MA \ Hz^{-1}}\]
+   \[S_{R1} = \frac{200}{60\cdot 0.05} = 66.67 \si{MA \ Hz^{-1}}\]
+   \[S_{R1} = \frac{250}{60\cdot 0.05} = 83.33 \si{MA \ Hz^{-1}}\]
+
+   \[\boxed{f_{sys} = 58.5\si{Hz}}\]
+   #+END_EXPORT
+
+** b)
+   #+BEGIN_EXPORT latex
+   \[P_{G1} = S_{R1}(f_{G1}^* - f_{sys}) = 100(60.05 - 58.5) = \boxed{155 \si{MA}}\]
+   \[P_{G2} = S_{R1}(f_{G1}^* - f_{sys}) = 100(60.15 - 58.5) = \boxed{165 \si{MA}}\]
+   \[P_{G3} = S_{R1}(f_{G1}^* - f_{sys}) = 100(60.1 - 58.5) = \boxed{160 \si{MA}}\]
+   #+END_EXPORT
