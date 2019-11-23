@@ -20,3 +20,67 @@ print(f"{power['L']}")
 : (18-2.4j) Amps
 : (115-8.51j) Volts
 : (5.151988164602412+2.5138234181590535j)
+** 2019-11-11
+   #+BEGIN_SRC python :results output
+poles = 4
+hertz = 60
+rpm = 1200
+
+slip = (60*60/2 - rpm) / (60*60/2)
+print(f"{slip * 100:.1f}%")
+   #+END_SRC
+
+   #+RESULTS:
+   : 33.3%
+   
+   #+BEGIN_SRC python :results output
+rpm = 1620
+hertz = 60
+a = 5 #turns ratio
+E1 = 120
+
+def fToW(f):
+    return 2*3.1415*f
+
+# (a)
+s = (60*60/2 - rpm)/(60*60/2) # slip
+#s = (fToW(60) - rpm/60)/fToW(60) #same thing
+print(s)
+
+# (b)
+E2 = s/a * E1
+print(E2)
+w2 = s*fToW(60)
+print(w2)
+
+# (c)
+I1 = 10 #Amps
+I2 = -a*I1
+Ps = 3*120*I1
+print(Ps)
+Pr = round(3*E2*I2)
+print(Pr)
+print(Pr+Ps)
+   #+END_SRC
+
+   #+RESULTS:
+   : 0.1
+   : 2.4
+   : 37.698
+   : 3600
+   : -360
+   : 3240
+
+** 2019-11-13
+   #+BEGIN_SRC python :results output
+rpm = 1620
+power = 3e3
+polePairs = 2
+hertz = 60
+
+torque = polePairs*power/(hertz*2*3.1415)
+print(torque)
+   #+END_SRC
+
+   #+RESULTS:
+   : 15.915963711602737
