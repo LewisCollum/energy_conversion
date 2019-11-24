@@ -4,9 +4,10 @@
 #+title: EE331 Fall 2019 HW \jobname
 #+author: Lewis Collum
 #+date: Updated: \today
+- /Verified with Homework Solutions/
 
 * 1.
-** a)   
+** a)
    #+BEGIN_EXPORT latex
    \begin{align*}
      V_{f} &= K_{C} (V_{t}^* - V_{t}) + V_{f0} \\
@@ -27,17 +28,17 @@
    #+BEGIN_EXPORT latex
    \begin{align*}
      V_{f} &= K_{C} (V_{t}^* - V_{t}) + V_{f0} \\
-     &= 2.5 (265\si{V} - 275\si{V}) + 150\si{V} \\
-     &= \boxed{125\si{V}}
+     &= 2.5 (280\si{V} - 265\si{V}) + 150\si{V} \\
+     &= \boxed{187.5\si{V}}
    \end{align*}
    #+END_EXPORT
 
    #+BEGIN_EXPORT latex
-   \[I_{f} = \frac{V_f}{R_f} = \frac{162.5\si{V}}{2\si{\Omega}} = \boxed{62.5\si{A}}\]
+   \[I_{f} = \frac{V_f}{R_f} = \frac{187.5\si{V}}{2\si{\Omega}} = \boxed{93.75\si{A}}\]
    #+END_EXPORT
 
    #+BEGIN_EXPORT latex
-   \[E_f = \omega_e K_e I_f = 2\pi\cdot 60\si{Hz} \cdot 0.025 \cdot 62.5\si{A} = \boxed{589\si{V}}\]
+   \[E_f = \omega_e K_e I_f = 2\pi\cdot 60\si{Hz} \cdot 0.025 \cdot 93.75\si{A} = \boxed{883.6\si{V}}\]
    #+END_EXPORT
    
 * 2
@@ -102,7 +103,7 @@
 
    \[\to f_{sys2} = \boxed{59.512\si{Hz}}\]
    \[P_{G1} = S_{R1}(f_{G1}^* - f_{sys2}) = \boxed{326.7\si{MA}}\]
-   \[P_{G1} = S_{R2}(f_{G2}^* - f_{sys2}) = \boxed{137.2\si{MA}}\]
+   \[P_{G2} = S_{R2}(f_{G2}^* - f_{sys2}) = \boxed{137.2\si{MA}}\]
    #+END_EXPORT
 
    Neither generator is overloaded since the output is below the rated
@@ -126,6 +127,6 @@
 ** b)
    #+BEGIN_EXPORT latex
    \[P_{G1} = S_{R1}(f_{G1}^* - f_{sys}) = 100(60.05 - 58.5) = \boxed{155 \si{MA}}\]
-   \[P_{G2} = S_{R1}(f_{G1}^* - f_{sys}) = 100(60.15 - 58.5) = \boxed{165 \si{MA}}\]
-   \[P_{G3} = S_{R1}(f_{G1}^* - f_{sys}) = 100(60.1 - 58.5) = \boxed{160 \si{MA}}\]
+   \[P_{G2} = S_{R2}(f_{G2}^* - f_{sys}) = 66.67(60.15 - 58.5) = \boxed{110 \si{MA}}\]
+   \[P_{G3} = S_{R3}(f_{G3}^* - f_{sys}) = 83.33(60.1 - 58.5) = \boxed{133 \si{MA}}\]
    #+END_EXPORT
