@@ -102,8 +102,8 @@
    \end{align*}
 
    \[\to f_{sys2} = \boxed{59.512\si{Hz}}\]
-   \[P_{G1} = S_{R1}(f_{G1}^* - f_{sys2}) = \boxed{326.7\si{MA}}\]
-   \[P_{G2} = S_{R2}(f_{G2}^* - f_{sys2}) = \boxed{137.2\si{MA}}\]
+   \[P_{G1} = S_{R1}(f_{G1}^* - f_{sys2}) = \boxed{326.7\si{MW}}\]
+   \[P_{G2} = S_{R2}(f_{G2}^* - f_{sys2}) = \boxed{137.2\si{MW}}\]
    #+END_EXPORT
 
    Neither generator is overloaded since the output is below the rated
@@ -117,16 +117,16 @@
    + S_{R2}(f_{G2}^* - f_{sys})
    + S_{R3}(f_{G3}^* - f_{sys})\]
 
-   \[S_{R1} = \frac{300}{60\cdot 0.05} = 100.0 \si{MA \ Hz^{-1}}\]
-   \[S_{R1} = \frac{200}{60\cdot 0.05} = 66.67 \si{MA \ Hz^{-1}}\]
-   \[S_{R1} = \frac{250}{60\cdot 0.05} = 83.33 \si{MA \ Hz^{-1}}\]
+   \[S_{R1} = \frac{300}{60\cdot 0.05} = 100.0 \si{MW \ Hz^{-1}}\]
+   \[S_{R1} = \frac{200}{60\cdot 0.05} = 66.67 \si{MW \ Hz^{-1}}\]
+   \[S_{R1} = \frac{250}{60\cdot 0.05} = 83.33 \si{MW \ Hz^{-1}}\]
 
    \[\boxed{f_{sys} = 58.5\si{Hz}}\]
    #+END_EXPORT
 
 ** b)
    #+BEGIN_EXPORT latex
-   \[P_{G1} = S_{R1}(f_{G1}^* - f_{sys}) = 100(60.05 - 58.5) = \boxed{155 \si{MA}}\]
-   \[P_{G2} = S_{R2}(f_{G2}^* - f_{sys}) = 66.67(60.15 - 58.5) = \boxed{110 \si{MA}}\]
-   \[P_{G3} = S_{R3}(f_{G3}^* - f_{sys}) = 83.33(60.1 - 58.5) = \boxed{133 \si{MA}}\]
+   \[P_{G1} = S_{R1}(f_{G1}^* - f_{sys}) = 100(60.05 - 58.5) = \boxed{155 \si{MW}}\]
+   \[P_{G2} = S_{R2}(f_{G2}^* - f_{sys}) = 66.67(60.15 - 58.5) = \boxed{110 \si{MW}}\]
+   \[P_{G3} = S_{R3}(f_{G3}^* - f_{sys}) = 83.33(60.1 - 58.5) = \boxed{133 \si{MW}}\]
    #+END_EXPORT
