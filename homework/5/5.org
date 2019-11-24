@@ -1,0 +1,20 @@
+#+latex_class_options: [fleqn]
+#+latex_header: \usepackage{../homework}
+
+#+title: EE341 Fall 2019 HW \jobname
+#+author: Lewis Collum
+#+date: Updated: \today
+
+* 1
+
+* COMMENT Misc 
+  - Flux Linkage
+  - Phase Leakage
+  - _Stator_: The stator is the stationary part of a rotary
+    system. Energy flows through a stator to or from the rotating
+    component of the system. In an electric motor, the stator provides
+    a rotating magnetic field that drives the rotating armature; in a
+    generator, the stator converts the rotating magnetic field to
+    electric current.
+  - Stator Coil Resistance and Stray loss
+  - Induced Internal Stator Voltage
