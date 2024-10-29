@@ -1,4 +1,4 @@
-\ProvidesPackage{myformula}[2019/01/30 Package for formulas]
+\ProvidesPackage{formula}[2019/01/30 Package for formulas]
 
 \usepackage[fleqn]{amsmath}
 \usepackage{amssymb}
@@ -13,8 +13,11 @@
 \usepackage{tabularx}
 \usepackage{array}
 \usepackage{xcolor}
-
+\usepackage{parskip}
+\usepackage[document]{ragged2e} %Left-Aligned Text (instead of justified)
 \renewcommand{\@seccntformat}[1]{}
+
+\boldmath
 
 \titlespacing{\section}{0mm}{1mm}{0mm}
 \titleformat*{\section}{\rmfamily\small\bfseries}
@@ -37,11 +40,8 @@
 
 \geometry{headsep=0.1in}
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{0pt}
 \setlength{\mathindent}{0pt}
 \setlength{\extrarowheight}{3pt}
-%\setlength{\textfloatsep}{-10mm}
-% \setlength{\tabcolsep}{2pt}
 \setlength{\partopsep}{0pt}
 \setlength{\columnseprule}{1pt}
 \def\columnseprulecolor{\color{black!5}}

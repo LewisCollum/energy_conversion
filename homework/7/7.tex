@@ -1,0 +1,143 @@
+% Created 2019-11-24 Sun 16:31
+% Intended LaTeX compiler: pdflatex
+\documentclass[fleqn, twocolumn]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\usepackage{../homework}
+\author{Lewis Collum}
+\date{Updated: \today}
+\title{EE331 Fall 2019 HW \jobname}
+\hypersetup{
+ pdfauthor={Lewis Collum},
+ pdftitle={EE331 Fall 2019 HW \jobname},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.1.9)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\begin{itemize}
+\item \emph{Verified with Homework Solutions}
+\end{itemize}
+
+\section*{1.}
+\label{sec:org97ae118}
+\subsection*{a)}
+\label{sec:org6dbfb4c}
+\begin{align*}
+  V_{f} &= K_{C} (V_{t}^* - V_{t}) + V_{f0} \\
+  &= 2.5 (280\si{V} - 275\si{V}) + 150\si{V} \\
+  &= \boxed{162.5\si{V}}
+\end{align*}
+
+\[I_{f} = \frac{V_f}{R_f} = \frac{162.5\si{V}}{2\si{\Omega}} = \boxed{81.25\si{A}}\]
+
+\[E_f = \omega_e K_e I_f = 2\pi\cdot 60\si{Hz} \cdot 0.025 \cdot 81.25\si{A} = \boxed{765.8\si{V}}\]
+
+\subsection*{b)}
+\label{sec:orgc327e49}
+\begin{align*}
+  V_{f} &= K_{C} (V_{t}^* - V_{t}) + V_{f0} \\
+  &= 2.5 (280\si{V} - 265\si{V}) + 150\si{V} \\
+  &= \boxed{187.5\si{V}}
+\end{align*}
+
+\[I_{f} = \frac{V_f}{R_f} = \frac{187.5\si{V}}{2\si{\Omega}} = \boxed{93.75\si{A}}\]
+
+\[E_f = \omega_e K_e I_f = 2\pi\cdot 60\si{Hz} \cdot 0.025 \cdot 93.75\si{A} = \boxed{883.6\si{V}}\]
+
+\section*{2}
+\label{sec:org4dfe21e}
+\subsection*{a)}
+\label{sec:orgd75adfc}
+\[S_R = \frac{1\si{MW}}{60\si{Hz} \cdot 0.05} = \boxed{0.33\si{MW \ Hz^{-1}}}\]
+
+\subsection*{b)}
+\label{sec:org7147f18}
+\[P_g = S_R (f_g^* - f_{system}) \to\]
+\begin{align*}
+  f_{system} &= f_g^* - \frac{P_g}{S_R} \\
+  &= 60.5\si{Hz} - \frac{0.5\si{MW}}{0.33\si{MW \ HZ^{-1}}} \\
+  &= \boxed{59.0\si{Hz}}
+\end{align*}
+
+\subsection*{c)}
+\label{sec:org6d86e3e}
+\begin{align*}
+  f_{system} &= f_g^* - \frac{P_g}{S_R} \\
+  &= 60.5\si{Hz} - \frac{0.2\si{MW}}{0.33\si{MW \ HZ^{-1}}} \\
+  &= \boxed{59.9\si{Hz}}
+\end{align*}
+
+\[\texttt{rpm} = f_{system} \cdot \frac{60}{\texttt{poles}/2} = \boxed{898.5\si{rpm}}\]
+
+\section*{3}
+\label{sec:org0e45de2}
+\subsection*{a)}
+\label{sec:org95f543e}
+\[S_{R1} = \frac{1000\si{MW}}{60\si{Hz}\cdot 0.03} = 555.6 \si{MW \ Hz^{-1}}\]
+\[S_{R2} = \frac{500\si{MW}}{60\si{Hz}\cdot 0.06} = 138.9 \si{MW \ Hz^{-1}}\]
+
+\begin{align*}
+  P_{G1} &= S_{R1}(f_{G1}^* - f_{system}) \\
+  &= 555.6\si{MW \ Hz^{-1}} (60.1\si{Hz} - 59.8\si{Hz}) \\
+  &= \boxed{166.7\si{MW}}
+\end{align*}
+
+\begin{align*}
+  P_{G2} &= S_{R2}(f_{G2}^* - f_{system}) \\
+  &= 138.9\si{MW \ Hz^{-1}} (60.5\si{Hz} - 59.8\si{Hz}) \\
+  &= \boxed{97.2\si{MW}}
+\end{align*}
+
+\[P_{LT} = 97.2 + 166.7 = \boxed{263.9\si{MW}}\]
+
+\subsection*{b)}
+\label{sec:org4c22f85}
+\begin{align*}
+  P_{demand} &= 263.9+200 = 463.9\si{MW} \\
+  &= S_{R1}(f_{G1}^* - f_{sys2}) + S_{R2}(f_{G2}^* - f_{sys2}) \\
+  &= 555.6(60.1 - f_{sys2}) + 138.9(60.5 - f_{sys2})
+\end{align*}
+
+\[\to f_{sys2} = \boxed{59.512\si{Hz}}\]
+\[P_{G1} = S_{R1}(f_{G1}^* - f_{sys2}) = \boxed{326.7\si{MW}}\]
+\[P_{G2} = S_{R2}(f_{G2}^* - f_{sys2}) = \boxed{137.2\si{MW}}\]
+
+Neither generator is overloaded since the output is below the rated
+power for both.
+
+\section*{4}
+\label{sec:org6781559}
+\subsection*{a)}
+\label{sec:org24cf07b}
+This equation is used to calculate the \(f_{sys}\) below:
+\[P_{demand} = S_{R1}(f_{G1}^* - f_{sys})
++ S_{R2}(f_{G2}^* - f_{sys})
++ S_{R3}(f_{G3}^* - f_{sys})\]
+
+\[S_{R1} = \frac{300}{60\cdot 0.05} = 100.0 \si{MW \ Hz^{-1}}\]
+\[S_{R1} = \frac{200}{60\cdot 0.05} = 66.67 \si{MW \ Hz^{-1}}\]
+\[S_{R1} = \frac{250}{60\cdot 0.05} = 83.33 \si{MW \ Hz^{-1}}\]
+
+\[\boxed{f_{sys} = 58.5\si{Hz}}\]
+
+\subsection*{b)}
+\label{sec:orge8bce83}
+\[P_{G1} = S_{R1}(f_{G1}^* - f_{sys}) = 100(60.05 - 58.5) = \boxed{155 \si{MW}}\]
+\[P_{G2} = S_{R2}(f_{G2}^* - f_{sys}) = 66.67(60.15 - 58.5) = \boxed{110 \si{MW}}\]
+\[P_{G3} = S_{R3}(f_{G3}^* - f_{sys}) = 83.33(60.1 - 58.5) = \boxed{133 \si{MW}}\]
+\end{document}

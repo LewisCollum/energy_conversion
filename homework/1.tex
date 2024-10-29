@@ -1,0 +1,152 @@
+% Created 2019-10-29 Tue 19:02
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\usepackage{homework}
+\usepackage{mathcomp}
+\author{Lewis Collum}
+\date{Updated: \today}
+\title{EE331 Fall 2019 HW \jobname}
+\hypersetup{
+ pdfauthor={Lewis Collum},
+ pdftitle={EE331 Fall 2019 HW \jobname},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.1.9)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+
+\section*{1}
+\label{sec:org8db3dda}
+\subsection*{Q1: Find the phasor current \(I_S\)}
+\label{sec:orgdbe0e8d}
+\begin{minted}[framesep=6pt,fontfamily=courier,fontsize=\footnotesize]{python}
+v = {'S': 120}
+
+z = {
+    'M': 10 + 4j,
+    'S': 0.2 + 0.5j,
+    'L': 0.3 + 0.1j,
+    'X': 3 + 10j
+}
+
+z['LM'] = z['L']+z['M']
+z['LMX'] = (z['LM']**-1 + z['X']**-1)**-1
+z['equivalent'] = z['LMX'] + z['S']
+
+i = {'S': v['S']/z['equivalent']}
+print("\(\\boxed{I_S =", f"{i['S']:.3}", "\si{A}}\)")
+\end{minted}
+\(\boxed{I_S = (11.9-14.2j) \si{A}}\)
+
+\subsection*{Q2: Find the phasor voltage \(V_X\)}
+\label{sec:org4df7a82}
+\begin{align*}
+  \frac{V_S-V_X}{Z_S} &= I_S \\
+  \implies V_X &= V_S - Z_SI_S 
+\end{align*}
+
+\begin{minted}[framesep=6pt,fontfamily=courier,fontsize=\footnotesize]{python}
+v['X'] = v['S'] - i['S']*z['S']
+print("\(\\boxed{V_X =", f"{v['X']:.3}", "\si{V}}\)")
+\end{minted}
+\(\boxed{V_X = (111-3.12j) \si{V}}\)
+
+\subsection*{Q3: Find active power, reactive power, and apparent power flows at point X}
+\label{sec:org5aa619d}
+\begin{minted}[framesep=6pt,fontfamily=courier,fontsize=\footnotesize]{python}
+p = {'X': v['X']*i['S']}
+p['apparent'] = abs(p['X'])
+p['active'] = p['X'].real
+p['reactive'] = p['X'].imag
+print(f"Active Power @ X = {p['active']:.5} W")
+print(f"Reactive Power @ X = {p['reactive']:.5} VAR")
+print(f"Apparent Power @ X = {p['apparent']:.5} VA")
+\end{minted}
+
+\begin{verbatim}
+Active Power @ X = 1272.7 W
+Reactive Power @ X = -1604.0 VAR
+Apparent Power @ X = 2047.5 VA
+\end{verbatim}
+
+\section*{2}
+\label{sec:org745b923}
+\begin{minted}[framesep=6pt,fontfamily=courier,fontsize=\footnotesize]{python}
+import numpy
+import pint
+unit = pint.UnitRegistry()
+
+w = 60.0 * 2*numpy.pi * unit.rad/unit.s
+v = {'S': 120 * unit.volts, 'L': 110*numpy.exp(1j * numpy.radians(5)) * unit.volts}
+l = {'S': 0.1 * unit.mH, 'L': 0.2 * unit.mH}
+r = {'S': 0.3 * unit.ohm, 'L': 0.5 * unit.ohm}
+z = {'S': r['S'] + w*l['S']*1j, 'L': r['L'] + w*l['L']*1j}
+\end{minted}
+
+\subsection*{Q1: Find the phasor current \(I_S\)}
+\label{sec:orga1d49e2}
+\begin{equation*}
+  I_S = \frac{V_S - V_L}{Z_{equivalent}}
+\end{equation*}
+\begin{minted}[framesep=6pt,fontfamily=courier,fontsize=\footnotesize]{python}
+z['equivalent'] = z['S'] + z['L']
+i = {'S': (v['S']-v['L'])/z['equivalent']}
+print("\(\\boxed{I_S =", f"{i['S'].magnitude:.3}", "\si{A}}\)")
+\end{minted}
+\(\boxed{I_S = (11.1-13.6j) \si{A}}\)
+
+\subsection*{Q2: Find active power, reactive power, and apparent power flows at load \(V_L\)}
+\label{sec:orgc4eada7}
+\begin{equation*}
+  P_L = I_SV_L
+\end{equation*}
+\begin{minted}[framesep=6pt,fontfamily=courier,fontsize=\footnotesize]{python}
+p = {'L': i['S']*v['L']}
+p['active'] = p['L'].real
+p['reactive'] = p['L'].imag
+p['apparent'] = abs(p['L'])
+print(f"Active Power @ X = {p['active'].magnitude:.5} W")
+print(f"Reactive Power @ X = {p['reactive'].magnitude:.5} VAR")
+print(f"Apparent Power @ X = {p['apparent'].magnitude:.5} VA")
+\end{minted}
+
+\begin{verbatim}
+Active Power @ X = 1347.1 W
+Reactive Power @ X = -1378.8 VAR
+Apparent Power @ X = 1927.6 VA
+\end{verbatim}
+
+\subsection*{Q3: Monthly cost for operating load. Assume that one month has 30 days.}
+\label{sec:orgbce9cb7}
+\begin{equation*}
+  C_m = \frac{20 \ \si{cents}}{\si{kWh}} \cdot \frac{30\cdot 24 \ \si{h}}{\si{month}} \cdot P_{L\_active}\times 10^{-3} \si{kWh}
+\end{equation*}
+\begin{minted}[framesep=6pt,fontfamily=courier,fontsize=\footnotesize]{python}
+centsPerkWh = 20
+daysPerMonth = 30
+hoursPerDay = 24
+hoursPerMonth = daysPerMonth * hoursPerDay
+monthlyDollars = centsPerkWh * hoursPerMonth * p['active'].magnitude /10**3 / 100
+print(f"Cost (dollars): {monthlyDollars:.5}")
+\end{minted}
+
+\begin{verbatim}
+Cost (dollars): 193.98
+\end{verbatim}
+\end{document}

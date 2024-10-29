@@ -9,15 +9,10 @@
 __pycache__/
 
 # LaTex artifacts
+*.aux
+*.log
 ltximg/
 _minted*
 
-# Org-Mode generated files
-*.html
-*.tex
-
 # Scrap Files
 *scrap*
-
-*.aux
-*.log
